@@ -1,8 +1,5 @@
-from itertools import count
-
-import pytest
 import time
-from selenium import webdriver
+
 from selenium.webdriver.common.by import By
 
 main_page_link = 'https://demoblaze.com/index.html'
