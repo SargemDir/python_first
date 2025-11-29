@@ -1,22 +1,28 @@
 import time
 
-from selenium.webdriver.common.by import By
+from pages.homePage import HomePage
+from pages.product import ProductPage
 
-main_page_link = 'https://demoblaze.com/index.html'
+#main_page_link = 'https://demoblaze.com/index.html'
 
 
 def test_open_s6(driver):
-    driver.get(main_page_link)
-    galaxy_s6 = driver.find_element(By.XPATH, '//a[text()="Samsung galaxy s6"]')
-    galaxy_s6.click()
-    title = driver.find_element(By.CSS_SELECTOR, 'h2')
-    assert title.text == 'Samsung galaxy s6'
+
+    home_page = HomePage(driver)
+    home_page.open()
+    home_page.click_galaxy_s6()
+    product_page = ProductPage(driver)
+    product_page.check_title_is('Samsung galaxy s6')
 
 
 def test_two_monitors(driver):
-    driver.get(main_page_link)
-    monitor_link = driver.find_element(By.CSS_SELECTOR, '''[onclick="byCat('monitor')"]''')
-    monitor_link.click()
+    home_page = HomePage(driver)
+    home_page.open()
+    home_page.click_monitor()
+    # driver.get(main_page_link)
+    # monitor_link = driver.find_element(By.CSS_SELECTOR, '''[onclick="byCat('monitor')"]''')
+    # monitor_link.click()
     time.sleep(3)
-    monitors = driver.find_elements(By.CSS_SELECTOR, '.card')
-    assert len(monitors) == 2
+    home_page.check_that_products_count(2)
+    #monitors = driver.find_elements(By.CSS_SELECTOR, '.card')
+    #assert len(monitors) == 2
