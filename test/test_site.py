@@ -19,10 +19,6 @@ def test_two_monitors(driver):
     home_page = HomePage(driver)
     home_page.open()
     home_page.click_monitor()
-    # driver.get(main_page_link)
-    # monitor_link = driver.find_element(By.CSS_SELECTOR, '''[onclick="byCat('monitor')"]''')
-    # monitor_link.click()
     time.sleep(3)
     home_page.check_that_products_count(2)
-    #monitors = driver.find_elements(By.CSS_SELECTOR, '.card')
-    #assert len(monitors) == 2
+
